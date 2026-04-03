@@ -34,6 +34,41 @@ git clone https://github.com/wew226/GitHub-Examples.git
 cd GitHub-Examples
 ```
 
+> You'll need to generate a Personal Access Token (PAT) 
+https://github.com/settings/personal-access-tokens
+
+You will use the PAT as your password when you login.
+
+- Give it Read and Write access to Contents for Commits
+
+### SSH
+
+```sh
+git clone git@github.com:wew226/GitHub-Examples.git
+cd GitHub-Examples
+```
+
+We will need to create our own SSH Ed25519 key pair using our email address as a label.
+```sh
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+For PowerShell users you will need to launch the ssh-agent in an *admin-elevated* PowerShell window and add the SSH private key to the ssh-agent.
+```sh
+Get-Service -Name ssh-agent | Set-Service -StartupType Manual
+Start-Service ssh-agent
+```
+
+In a terminal window without elevated permissions, add the SSH private key to the ssh-agent.
+```sh
+ssh-add C:/Users/YOU/.ssh/id_ed25519
+```
+
+We can test our connection here:
+```sh
+ssh -T git@github.com
+```
+
 ## Commits
 
 When we want to commit code we can write `git commit` which will open up the commit edit message in the editor of choice.
